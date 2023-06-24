@@ -1,5 +1,5 @@
 async function getCurrentWeather() {
-  const apiKey = 'https://openweathermap.org/api';
+  const apiKey = 'https://openweathermap.org/';
   const city = 'London';
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
 
