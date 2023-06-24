@@ -1,22 +1,21 @@
-//your JS code here. If required.
-document.getElementById("getWeatherButton").addEventListener("click", function() {
-      // Make an HTTP request to the weather API
-      fetch("https://api.openweathermap.org/data/2.5/weather?q=London&appid=https://openweathermap.org/api")
-        .then(function(response) {
-          if (response.ok) {
-            return response.json();
-          } else {
-            throw new Error("Failed to fetch weather data.");
-          }
-        })
-        .then(function(data) {
-          // Extract the weather information from the API response
-          const weather = data.weather[0].main;
+function getCurrentWeather() {
+  // Replace YOUR_API_KEY with your actual API key obtained from OpenWeatherMap
+  const apiKey = 'YOUR_API_KEY';
+  const city = 'London';
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
 
-          // Update the weatherData div with the weather information
-          document.getElementById("weatherData").textContent = `Current weather in London: ${weather}`;
-        })
-        .catch(function(error) {
-          console.error(error);
-        });
+  // Make an HTTP request to the OpenWeatherMap API
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      // Extract the weather description from the API response
+      const weatherDescription = data.weather[0].description;
+
+      // Update the weatherData div with the weather information
+      const weatherDataDiv = document.getElementById('weatherData');
+      weatherDataDiv.textContent = `Current weather in ${city}: ${weatherDescription}`;
+    })
+    .catch(error => {
+      console.log('An error occurred while fetching the weather data:', error);
     });
+}
