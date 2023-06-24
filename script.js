@@ -16,3 +16,4 @@ async function getCurrentWeather() {
     console.log('An error occurred while fetching the weather data:', error);
   }
 }
+getCurrentWeather();
