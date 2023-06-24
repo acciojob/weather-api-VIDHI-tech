@@ -4,7 +4,12 @@ function getCurrentWeather() {
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
 
   fetch(apiUrl)
-    .then(response => response.json())
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Failed to fetch weather data');
+      }
+      return response.json();
+    })
     .then(data => {
       const weatherDescription = data.weather[0].description;
       const weatherDataDiv = document.getElementById('weatherData');
